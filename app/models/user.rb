@@ -3,7 +3,15 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-         
-  belongs_to :plan      #The user has to be part of one plan only.    
-         
+  belongs_to :plan
+  attr_accessor :stripe_card_token
+  
+  def save_with_payment
+    if valid?
+      # if the infor is valid, stripe will submit that information
+      customer = Stripe::Customer.create(description: email, plan: plan_id, card: stripe_card_token)
+      self.stripe_customer_token = customer.id
+      save!
+    end
+  end
 end

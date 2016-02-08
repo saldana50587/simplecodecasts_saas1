@@ -4,6 +4,7 @@ $(document).ready(function() {
   // Watch for a form submission:
   $("#form-submit-btn").click(function(event) {  //If they click the #for-submit-btn button
     event.preventDefault(); //Don't send anything to the server yet
+    
     $('input[type=submit]').prop('disabled', true);
     var error = false;  
     var ccNum = $('#card_number').val(),      //Storing variables grabbing values from the fields
@@ -17,10 +18,11 @@ $(document).ready(function() {
         cvc: cvcNum,
         exp_month: expMonth,
         exp_year: expYear
-      }, stripeResponseHandler);    //When stripe gets back with the token, lets run stripe ResponseHandler
+      }, stripeResponseHandler);    //When stripe gets back with the token, lets run stripeResponseHandler function
     }
     return false;
   }); // form submission
+  
   function stripeResponseHandler(status, response) {
     // Get a reference to the form:
     var f = $("#new_user");
