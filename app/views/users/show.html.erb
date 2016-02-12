@@ -1,12 +1,26 @@
+<div class="well" >
+<div class = "row">
+ <div class="col-md-3 text-center">
 <%= image_tag @user.profile.avatar.url %>
-<%= @user.profile.first_name %> <%= @user.profile.last_name %>
-<%= @user.profile.job_title %><br/>
-
-
+    </div>
+     <div class="col-md-12">
+<h1><%= @user.profile.first_name %> <%= @user.profile.last_name %></h1> 
+<h3> <%= @user.profile.job_title %></h3>
 <% if current_user.plan_id == 2 %>
 
 <%= @user.profile.phone_number %><br/>
 <%= @user.profile.contact_email %><br/>
-<% end %>
 
-<%= @user.profile.description %><br/>
+<% end %>
+<!--<div class = "well">  -->
+<h3 class = "col-md-16 text-center">Description</h3>
+<%= @user.profile.description %></div>
+<!--</div> -->
+
+
+</div>
+
+
+
+    </div>
+</div>
